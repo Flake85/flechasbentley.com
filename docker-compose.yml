@@ -1,0 +1,20 @@
+version: "3"
+services:
+  flechasbentley-frontend:
+    hostname: flechasbentley.test
+    container_name: flechasbentley-frontend
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    networks:
+      - default
+    volumes: 
+      - ./:/app
+    labels:
+      - "traefik.http.routers.flechasbentley-frontend.rule=Host(`flechasbentley.test`)"
+      - "traefik.docker.network=global-docker_dev"
+      - "traefik.port=8080"
+networks:
+  default:
+    external:
+      name: global-docker_dev
