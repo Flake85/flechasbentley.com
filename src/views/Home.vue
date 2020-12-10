@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <b-icon icon="exclamation-triangle" variant="warning" />
+    <HelloWorld msg="flechasbentley.com" />
   </div>
 </template>
 
