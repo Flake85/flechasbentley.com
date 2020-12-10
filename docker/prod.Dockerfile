@@ -12,5 +12,7 @@ RUN yarn install
 RUN yarn build
 
 FROM nginx:latest
+RUN mkdir /app
+WORKDIR /app
 COPY --from=build /app/dist/. /usr/share/nginx/html/.
 COPY docker/nginx.conf /etc/nginx/nginx.conf
