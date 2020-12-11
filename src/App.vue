@@ -1,9 +1,9 @@
 <template>
-  <div id="nav">
-    <Menubar :model="items" >
+  <div id="nav" class="p-grid">
+    <Menubar :model="items" class="p-col">
       <template #start>
           <router-link to="/">
-            <i class="pi pi-fw pi-briefcase"></i>Flechas Bentley
+            <i class="pi pi-fw pi-home"></i>
           </router-link>
       </template>
     </Menubar>
@@ -19,7 +19,12 @@ export default {
   },
   data() {
     return {
-      //
+      items: [
+          {
+              label: "Flechas Bentley",
+              to: "/"
+          }
+      ]
     }
   }
 }
