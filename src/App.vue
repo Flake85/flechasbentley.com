@@ -1,6 +1,12 @@
 <template>
   <div id="nav">
-    <Menubar :model="items" />
+    <Menubar :model="items" >
+      <template #start>
+          <router-link to="/">
+            <i class="pi pi-fw pi-briefcase"></i>Flechas Bentley
+          </router-link>
+      </template>
+    </Menubar>
   </div>
   <router-view />
 </template>
@@ -13,13 +19,7 @@ export default {
   },
   data() {
     return {
-      items: [
-        {
-            label:'Flechas',
-            icon:'pi pi-fw pi-briefcase',
-            to: '/'
-        },
-      ]
+      //
     }
   }
 }

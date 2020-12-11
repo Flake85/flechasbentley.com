@@ -1,17 +1,29 @@
 <template>
-  <div class="home">
-    <HelloWorld msg="flechasbentley.com" />
+  <div class="home p-grid">
+    <div class="p-col-8 p-offset-2">
+      <Card class="p-grid">
+        <template #title class="p-col-8 p-offset-2">
+          Flechas Bentley Homepage
+        </template>
+        <template #content class="p-col-8 p-offset-2">
+          Welcome to flechasbentley.com! If you are reading this, then you are here too
+          early. That only means you get to see things as I develop my first website. Be
+          sure to check back for more updates!
+        </template>
+      </Card>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue";
 
 export default defineComponent({
   name: "Home",
-  components: {
-    HelloWorld
-  }
 });
 </script>
+<style lang="scss" scoped>
+.home{
+  margin-top: 60px;
+}
+</style>
