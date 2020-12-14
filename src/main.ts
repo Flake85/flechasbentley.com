@@ -4,15 +4,14 @@ import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
 import '@/assets/scss/app.scss';
+import { registerPrimeComponents } from "./components/primevue";
 
-// prim vue components
-import Card from 'primevue/card'
-import Button from 'primevue/button'
-
-createApp(App)
+const app = createApp(App)
+app
   .use(store)
   .use(router)
-  .component('Card', Card)
-  .component('Button', Button)
-  .mount("#app");
+
+registerPrimeComponents(app)
+
+app.mount("#app");
     
