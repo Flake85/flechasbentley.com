@@ -13,7 +13,9 @@
     </Menubar>
   </div>
   <div class="view">
-    <router-view />
+    <transition name="slide" mode="out-in">
+      <router-view :key="$route.path" />
+    </transition>
   </div>
 </template>
 <script lang="ts">
@@ -49,5 +51,14 @@ export default defineComponent({
 <style lang="scss">
 .view {
   margin-top: 60px;
+}
+.slide-enter-active,
+.slide-leave-active {
+  transition: opacity 1s, transform 1s;
+}
+.slide-enter,
+.slide-leave-to {
+  opacity: 0;
+  transform: translateX(-30%);
 }
 </style>
