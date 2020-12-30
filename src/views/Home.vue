@@ -6,9 +6,9 @@
           Flechas Bentley Homepage
         </template>
         <template #content>
-          Welcome to flechasbentley.com! If you are reading this, then you are here too
-          early. That only means you get to see things as I develop my first website. Be
-          sure to check back for more updates!
+          Welcome to flechasbentley.com! If you are reading this, then you are
+          here too early. That only means you get to see things as I develop my
+          first website. Be sure to check back for more updates!
         </template>
       </Card>
     </div>
@@ -19,11 +19,9 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "Home",
+  name: "Home"
 });
 </script>
 <style lang="scss" scoped>
-.home{
-  margin-top: 60px;
-}
+//
 </style>
