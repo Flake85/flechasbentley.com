@@ -16,10 +16,10 @@
     <router-view />
   </div>
 </template>
-<script>
+<script lang="ts">
 import Menubar from "primevue/menubar";
-
-export default {
+import { defineComponent } from "vue";
+export default defineComponent({
   components: {
     Menubar
   },
@@ -44,7 +44,7 @@ export default {
       this.$router.push("/");
     }
   }
-};
+});
 </script>
 <style lang="scss">
 .view {
