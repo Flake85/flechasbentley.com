@@ -1,17 +1,23 @@
 <template>
   <div id="nav" class="p-grid">
-    <Menubar :model="items" class="p-col">
+    <Menubar :model="items" class="p-col p-jc-between">
       <template #start>
-          <router-link to="/">
-            <i class="pi pi-fw pi-home"></i>
-          </router-link>
+        <img
+          alt="logo"
+          src="../src/assets/imgs/logo.png"
+          @click="directHome"
+          height="40"
+          class="p-mr-2 clickable"
+        />
       </template>
     </Menubar>
   </div>
-  <router-view />
+  <div class="view">
+    <router-view />
+  </div>
 </template>
 <script>
-import Menubar from 'primevue/menubar';
+import Menubar from "primevue/menubar";
 
 export default {
   components: {
@@ -20,15 +26,28 @@ export default {
   data() {
     return {
       items: [
-          {
-              label: "Flechas Bentley",
-              to: "/"
-          }
+        {
+          label: "Home Page",
+          icon: "pi pi-fw pi-home",
+          to: "/"
+        },
+        {
+          label: "About",
+          icon: "pi pi-fw pi-user",
+          to: "/about"
+        }
       ]
+    };
+  },
+  methods: {
+    directHome() {
+      this.$router.push("/");
     }
   }
-}
+};
 </script>
 <style lang="scss">
-
+.view {
+  margin-top: 60px;
+}
 </style>

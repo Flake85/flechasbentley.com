@@ -8,11 +8,15 @@ const routes: Array<RouteRecordRaw> = [
     component: Home
   },
   {
+    path: "/about",
+    name: "About",
+    component: () => import("../views/About.vue")
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: "404",
-    component: () =>
-      import(/* webpackChunckName: "404" */ "../views/404.vue")
-  },
+    component: () => import("../views/404.vue")
+  }
 ];
 
 const router = createRouter({
