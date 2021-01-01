@@ -1,9 +1,12 @@
 <template>
   <div class="home p-grid">
     <div class="p-col-8 p-offset-2">
-      <Card class="p-grid">
+      <h1 class="animate__animated animate__bounce logotxt">Flechas Bentley</h1>
+    </div>
+    <div class="p-col-8 p-offset-2">
+      <Card class="p-grid animate__animated animate__zoomIn">
         <template #title>
-          Flechas Bentley Homepage
+          Homepage
         </template>
         <template #content>
           Welcome to flechasbentley.com! If you are reading this, then you are
