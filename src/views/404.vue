@@ -2,20 +2,23 @@
   <div id="lost-main" class="p-grid">
     <div class="p-col-6 p-offset-3">
       <Card>
-        <template #header>
-          <h1 class="logotxt" style="padding-left: 0.5em">
-            Flechas Bentley
-          </h1>
-        </template>
         <template #title>
-          Lost and Found...
+          <div class="logotxt">
+            FlechasBentley.com
+          </div>
         </template>
         <template #content>
           <p>You seem to be lost?</p>
           <p>Maybe try one of these links:</p>
           <ul>
-            <li><router-link to="/">Homepage</router-link></li>
-            <li><router-link to="/about">About</router-link></li>
+            <li class="animate__animated animate__lightSpeedInRight">
+              <router-link to="/">Homepage</router-link>
+            </li>
+            <li
+              class="animate__animated animate__lightSpeedInRight animate__delay-1s"
+            >
+              <router-link to="/about">About</router-link>
+            </li>
           </ul>
         </template>
         <template #footer>
