@@ -8,22 +8,20 @@
           </div>
         </template>
         <template #content>
-          <p>You seem to be lost?</p>
-          <p>Maybe try one of these links:</p>
+          <div class="p-text">You seem lost?</div>
+          <div class="p-text">Maybe try one of these links:</div>
           <ul>
-            <li class="animate__animated animate__lightSpeedInRight">
+            <li>
               <router-link to="/">Homepage</router-link>
             </li>
-            <li
-              class="animate__animated animate__lightSpeedInRight animate__delay-1s"
-            >
+            <li>
               <router-link to="/about">About</router-link>
             </li>
           </ul>
         </template>
         <template #footer>
           <Button
-            icon="pi pi-arrow-right"
+            icon="pi pi-arrow-right animate__animated animate__shakeX"
             label="To Homepage"
             @click="directToHome()"
           />
