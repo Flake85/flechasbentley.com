@@ -1,7 +1,7 @@
 <template>
   <div id="nav" class="p-grid">
-    <Menubar :model="items" class="p-col p-jc-between">
-      <template #start>
+    <Menubar :model="items" class="p-col p-jc-between sticky">
+      <template #start class="p-offset-3">
         <img
           alt="logo"
           src="../src/assets/imgs/logo.png"
@@ -52,7 +52,7 @@ export default defineComponent({
 </script>
 <style lang="scss">
 .view {
-  margin-top: 60px;
+  margin-top: 90px;
 }
 .slide-enter-active,
 .slide-leave-active {
@@ -62,5 +62,10 @@ export default defineComponent({
 .slide-leave-to {
   opacity: 0;
   transform: translateX(-30%);
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 </style>
