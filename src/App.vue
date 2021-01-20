@@ -1,6 +1,6 @@
 <template>
   <div id="nav" class="p-grid">
-    <Menubar :model="items" class="p-col p-jc-between sticky">
+    <Menubar id="nav" :model="items" class="p-col p-jc-between sticky">
       <template #start class="p-offset-3">
         <img
           alt="logo"
@@ -36,9 +36,9 @@ export default defineComponent({
           to: "/"
         },
         {
-          label: "About",
+          label: "Resumé",
           icon: "pi pi-fw pi-user",
-          to: "/about"
+          to: "/resume"
         }
       ]
     };
@@ -51,9 +51,6 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-.view {
-  margin-top: 90px;
-}
 .slide-enter-active,
 .slide-leave-active {
   transition: opacity 1s, transform 1s;
@@ -67,5 +64,21 @@ export default defineComponent({
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 2;
+}
+#nav {
+  background-color: black;
+  border-color: black;
+}
+#nav .p-menuitem .p-menuitem-link .p-menuitem-text {
+  color: white;
+}
+#nav .p-menuitem:hover .p-menuitem-link .p-menuitem-text {
+  color: black;
+}
+@media (min-width: 961px) {
+  .view {
+    margin-top: 62px;
+  }
 }
 </style>

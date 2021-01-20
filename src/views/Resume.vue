@@ -1,9 +1,9 @@
 <template>
-  <div class="about p-grid">
+  <div class="resume p-grid">
     <div class="p-col-8 p-offset-2">
       <Card class="p-grid">
         <template #title>
-          About Flechas Bentley
+          Flechas Bentley's Resumé
         </template>
         <template #content>
           Coming Soon!
@@ -15,7 +15,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 export default defineComponent({
-  name: "about"
+  name: "resume"
 });
 </script>
 <style lang="scss">

@@ -6,13 +6,16 @@
 @import '~animate.css/animate.min.css';
 
 @import url('https://fonts.googleapis.com/css2?family=Lemonada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
 
 .logotxt {
     font-family: 'Lemonada', cursive;
 }
+.kaushantxt {
+    font-family: 'Kaushan Script', cursive;
+}
 
 body {
-    // background-color: lightgray;
     background-color: black;
 }
 
@@ -21,5 +24,5 @@ body {
 }
 
 .p-ink {
-    background: rgba(35, 14, 224, 0.753);
+    background: #0078d4
 }
