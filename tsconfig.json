@@ -16,7 +16,6 @@
       "jest"
     ],
     "typeRoots": [
-      "../../typings",
       "../node_modules/@types"
     ],
     "paths": {
@@ -39,7 +38,6 @@
     "tests/**/*.tsx"
   ],
   "exclude": [
-    "node_modules",
-    "../../typings"
+    "node_modules"
   ]
 }

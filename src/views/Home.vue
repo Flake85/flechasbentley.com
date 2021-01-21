@@ -17,9 +17,9 @@
     </div>
 
     <div class="p-col-8 p-offset-2">
-      <Card class="p-grid animate__animated animate__fadeIn test">
+      <Card class="p-grid test">
         <template #title>
-          <div class="animate__animated animate__lightSpeedInRight">
+          <div v-scrollanimation="'animate__lightSpeedInRight'">
             Homepage
           </div>
         </template>
