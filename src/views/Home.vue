@@ -51,7 +51,7 @@ export default defineComponent({
     };
   },
   created() {
-    this.intervalHandle = setInterval(() => {
+    this.intervalHandle = window.setInterval(() => {
       this.show = false;
       setTimeout(() => {
         const titles = [
