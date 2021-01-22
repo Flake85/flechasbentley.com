@@ -20,7 +20,7 @@
       <Card class="p-grid test">
         <template #title>
           <div v-scrollanimation="'animate__lightSpeedInRight'">
-            Homepage
+            About Me
           </div>
         </template>
         <template #content>
@@ -93,6 +93,18 @@ export default defineComponent({
   },
   beforeUnmount() {
     clearInterval(this.intervalHandle);
+  },
+  computed: {
+    age() {
+      const dob = new Date("1985/12/26");
+      const now = new Date();
+      let age = now.getFullYear() - dob.getFullYear();
+      const m = now.getMonth() - dob.getMonth();
+      if (m < 0 || (m === 0 && now.getDate() < dob.getDate())) {
+        age--;
+      }
+      return age;
+    }
   }
 });
 </script>
@@ -100,9 +112,10 @@ export default defineComponent({
 #banner {
   height: calc(100vh - 62px);
   display: flex;
+  // background-image: linear-gradient(to right, #08f, #30cc8b);
 }
 .panel {
-  flex: 1;
+  flex: 2;
   display: flex;
   flex-direction: column;
 }
@@ -137,7 +150,7 @@ ul .p-menubar-root-list {
   height: 1000px;
 }
 @media (min-height: 768px) {
-  #banner {
+  .panel {
     transform: translateY(25%);
   }
 }

@@ -19,6 +19,9 @@
       </transition>
     </router-view>
   </div>
+  <div id="foot" class="p-col p-text" v-scrollanimation="'animate__fadeIn'">
+    Made by Flechas Bentley {{ currentYear }}
+  </div>
 </template>
 <script lang="ts">
 import Menubar from "primevue/menubar";
@@ -46,6 +49,11 @@ export default defineComponent({
   methods: {
     directHome() {
       this.$router.push("/");
+    }
+  },
+  computed: {
+    currentYear() {
+      return new Date().getFullYear();
     }
   }
 });
@@ -75,6 +83,11 @@ export default defineComponent({
 }
 #nav .p-menuitem:hover .p-menuitem-link .p-menuitem-text {
   color: black;
+}
+#foot {
+  color: white;
+  height: 62px;
+  text-align: center;
 }
 @media (min-width: 961px) {
   .view {
