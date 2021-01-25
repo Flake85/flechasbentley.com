@@ -1,14 +1,10 @@
 <template>
-  <div class="resume p-grid">
-    <div class="p-col-8 p-offset-2">
-      <Card class="p-grid">
-        <template #title>
-          Flechas Bentley's Resumé
-        </template>
-        <template #content>
-          Coming Soon!
-        </template>
-      </Card>
+  <div id="resume">
+    <div class="card container">
+      <div class="card-body">
+        <h5 class="card-title">My Resumé</h5>
+        <h6 class="card-subtitle mb-2 text-muted ">Coming Soon!</h6>
+      </div>
     </div>
   </div>
 </template>
@@ -19,5 +15,10 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-//
+#resume {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - (66px + 72px));
+}
 </style>

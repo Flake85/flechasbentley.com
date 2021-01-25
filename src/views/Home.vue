@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <div id="banner">
+    <div id="banner" class="container">
       <div class="panel">
         <h1
-          class="p-text-center logotxt head text-white animate__animated animate__rubberBand"
+          class="text-center logotxt head text-light animate__animated animate__rubberBand"
         >
           Flechas Bentley
         </h1>
@@ -15,22 +15,24 @@
         </transition>
       </div>
     </div>
-
-    <div class="p-col-8 p-offset-2">
-      <Card class="p-grid test">
-        <template #title>
-          <div v-scrollanimation="'animate__lightSpeedInRight'">
+    <div class="container">
+      <div class="card test">
+        <div class="card-body">
+          <h5
+            class="card-title"
+            v-scrollanimation="'animate__lightSpeedInRight'"
+          >
             About Me
-          </div>
-        </template>
-        <template #content>
-          <div>
+          </h5>
+          <h6 class="card-subtitle mb-2 text-muted ">Coming Soon!</h6>
+
+          <p class="card-text">
             Welcome to flechasbentley.com! If you are reading this, then you are
             here too early. That only means you get to see things as I develop
-            my first website. Be sure to check back for more updates!
-          </div>
-        </template>
-      </Card>
+            my first deployed website. Be sure to check back for more updates!
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -44,7 +46,7 @@ export default defineComponent({
     return {
       title: {
         title: "Developer",
-        class: "p-col p-text-center text-white interval-text dev-text"
+        class: "col text-center text-light interval-text dev-text"
       },
       show: true,
       intervalHandle: 0
@@ -54,30 +56,31 @@ export default defineComponent({
     this.intervalHandle = window.setInterval(() => {
       this.show = false;
       setTimeout(() => {
+        const titleClass = "col text-center text-light interval-text";
         const titles = [
           {
             title: "Designer",
-            class: "p-col p-text-center text-white logotxt interval-text"
+            class: titleClass + " logotxt"
           },
           {
             title: "Developer",
-            class: "p-col p-text-center text-white interval-text dev-text"
+            class: titleClass + " dev-text"
           },
           {
             title: "Handcrafted",
-            class: "p-col p-text-center text-white logotxt interval-text"
+            class: titleClass + " logotxt"
           },
           {
             title: "Husband",
-            class: "p-col p-text-center text-white kaushantxt interval-text"
+            class: titleClass + " kaushantxt"
           },
           {
             title: "Father",
-            class: "p-col p-text-center text-white kaushantxt interval-text"
+            class: titleClass + " kaushantxt"
           },
           {
             title: "Gamer",
-            class: "p-col p-text-center text-white kaushantxt interval-text"
+            class: titleClass + " kaushantxt"
           }
         ];
 
@@ -110,14 +113,14 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 #banner {
-  height: calc(100vh - 62px);
+  height: calc(100vh - 65.97px);
   display: flex;
+  // TODO: decide on the following:
   // background-image: linear-gradient(to right, #08f, #30cc8b);
 }
 .panel {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
+  flex: 1;
+  margin: auto;
 }
 .fade-enter-active,
 .fade-leave-active {
@@ -127,11 +130,8 @@ export default defineComponent({
 .fade-leave-to {
   opacity: 0;
 }
-.text-white {
-  color: white;
-}
 hr {
-  width: 65%;
+  color: white;
 }
 .interval-text {
   font-size: 40px;
@@ -140,18 +140,10 @@ hr {
   margin-top: 0;
   font-size: 60px;
 }
-ul .p-menubar-root-list {
-  background-color: black;
-}
 .dev-text {
   letter-spacing: 5px;
 }
 .test {
   height: 1000px;
-}
-@media (min-height: 768px) {
-  .panel {
-    transform: translateY(25%);
-  }
 }
 </style>

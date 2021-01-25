@@ -1,56 +1,59 @@
 <template>
-  <div id="nav" class="p-grid">
-    <Menubar id="nav" :model="items" class="p-col p-jc-between sticky">
-      <template #start class="p-offset-3">
-        <img
-          alt="logo"
-          src="../src/assets/imgs/logo.png"
-          @click="directHome"
-          height="40"
-          class="p-mr-2 clickable"
-        />
-      </template>
-    </Menubar>
+  <div id="nav">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <router-link to="/" class="navbar-brand">
+          <img
+            alt="logo"
+            src="../src/assets/imgs/logo.png"
+            height="40"
+            class="p-mr-2 clickable"
+          />
+        </router-link>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <router-link to="/" class="nav-link" exact>Home</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/resume" class="nav-link" exact
+                >Resumé</router-link
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </div>
-  <div class="view">
+  <div id="view">
     <router-view v-slot="{ Component }">
       <transition name="slide" mode="out-in">
         <component :is="Component" />
       </transition>
     </router-view>
   </div>
-  <div id="foot" class="p-col p-text" v-scrollanimation="'animate__fadeIn'">
-    Made by Flechas Bentley {{ currentYear }}
-  </div>
+  <footer class="bg-dark text-center text-lg-start">
+    <div class="text-center p-3">
+      <p v-scrollanimation="'animate__fadeIn'" class="text-light">
+        Made by: Flechas Bentley ©{{ currentYear }}
+      </p>
+    </div>
+  </footer>
 </template>
 <script lang="ts">
-import Menubar from "primevue/menubar";
 import { defineComponent } from "vue";
 export default defineComponent({
-  components: {
-    Menubar
-  },
-  data() {
-    return {
-      items: [
-        {
-          label: "Home Page",
-          icon: "pi pi-fw pi-home",
-          to: "/"
-        },
-        {
-          label: "Resumé",
-          icon: "pi pi-fw pi-user",
-          to: "/resume"
-        }
-      ]
-    };
-  },
-  methods: {
-    directHome() {
-      this.$router.push("/");
-    }
-  },
   computed: {
     currentYear() {
       return new Date().getFullYear();
@@ -68,30 +71,15 @@ export default defineComponent({
   opacity: 0;
   transform: translateX(-30%);
 }
-.sticky {
-  position: fixed;
-  top: 0;
+#view {
+  margin-top: 66px;
+  min-height: calc(100vh - (66px + 72px));
+}
+#footer {
   width: 100%;
-  z-index: 2;
-}
-#nav {
-  background-color: black;
-  border-color: black;
-}
-#nav .p-menuitem .p-menuitem-link .p-menuitem-text {
-  color: white;
-}
-#nav .p-menuitem:hover .p-menuitem-link .p-menuitem-text {
-  color: black;
-}
-#foot {
-  color: white;
-  height: 62px;
+  background-color: #212529;
+  display: flex;
   text-align: center;
-}
-@media (min-width: 961px) {
-  .view {
-    margin-top: 62px;
-  }
+  justify-content: center;
 }
 </style>
