@@ -1,34 +1,35 @@
 <template>
-  <div id="lost-main" class="p-grid">
-    <div class="p-col-6 p-offset-3">
-      <Card>
-        <template #title>
-          <div class="logotxt">
-            FlechasBentley.com
-          </div>
-        </template>
-        <template #content>
-          <p>You seem to be lost?</p>
-          <p>Maybe try one of these links:</p>
-          <ul>
-            <li class="animate__animated animate__lightSpeedInRight">
-              <router-link to="/">Homepage</router-link>
-            </li>
-            <li
-              class="animate__animated animate__lightSpeedInRight animate__delay-1s"
-            >
-              <router-link to="/about">About</router-link>
-            </li>
-          </ul>
-        </template>
-        <template #footer>
-          <Button
-            icon="pi pi-arrow-right"
-            label="To Homepage"
-            @click="directToHome()"
-          />
-        </template>
-      </Card>
+  <div id="lost-main" class="container">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title mb-4">FlechasBentley.com says...</h5>
+        <h6 class="card-subtitle mb-2 text-danger">
+          This page does not exist.
+        </h6>
+        <h6 class="card-subtitle mb-2 text-muted ">
+          Maybe try one of these links:
+        </h6>
+        <ul>
+          <li><router-link to="/">Homepage</router-link></li>
+          <li><router-link to="/resume">Resumé</router-link></li>
+        </ul>
+        <button type="button" class="btn btn-primary" @click="directToHome">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-chevron-right animate__animated animate__shakeX"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+            />
+          </svg>
+          To Homepage
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -44,5 +45,14 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-//
+#lost-main {
+  height: calc(100vh - (66px + 72px));
+  display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card {
+  width: 100%;
+}
 </style>
