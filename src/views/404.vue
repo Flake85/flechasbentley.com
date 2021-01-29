@@ -14,9 +14,7 @@
           <li><router-link to="/resume">Resumé</router-link></li>
         </ul>
         <button type="button" class="btn btn-primary" @click="directToHome">
-          
-            class="bi bi-chevron-right animate__animated animate__shakeX"
-            
+          <i class="bi bi-chevron-right animate__animated animate__shakeX"></i>
           To Homepage
         </button>
       </div>
