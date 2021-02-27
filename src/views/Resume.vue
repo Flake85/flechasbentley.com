@@ -15,7 +15,7 @@
               <p class="card-subtitle">
                 <strong>Email: </strong>Flechas.Bentley@gmail.com
               </p>
-              <p class="card-subtitle">
+              <p class="card-subtitle mb-5">
                 <strong>Github: </strong
                 ><a target="_blank" href="https://github.com/Flake85"
                   >https://github.com/Flake85</a
@@ -23,7 +23,7 @@
               </p>
             </div>
             <h4 class="text-decoration-underline mb-4">Work Experience</h4>
-            <div v-for="job in jobs" :key="job.company">
+            <div v-for="job in jobs" :key="job.company" class="mb-5">
               <div class="row">
                 <div class="col-sm text-sm-center order-sm-2">
                   <h4 class="mb-0">
@@ -34,8 +34,13 @@
                   <p class="mb-0">{{ job.location }}</p>
                 </div>
                 <div class="col-sm order-sm-1">
-                  <p class="mb-0">{{ job.datesEmployed }}</p>
-                  <p v-if="job.datesEmployed2">{{ job.datesEmployed2 }}</p>
+                  <div v-if="job.datesEmployed2">
+                    <p class="mb-0">{{ job.datesEmployed }}</p>
+                    <p>{{ job.datesEmployed2 }}</p>
+                  </div>
+                  <div v-else>
+                    <p>{{ job.datesEmployed }}</p>
+                  </div>
                 </div>
               </div>
               <p class="mb-0">
@@ -59,7 +64,7 @@
                 <p>1999 - 2004</p>
               </div>
             </div>
-            <ul>
+            <ul class="mb-5">
               <li>Diploma</li>
             </ul>
             <h4 class="text-decoration-underline mb-4">Tech Stack</h4>
