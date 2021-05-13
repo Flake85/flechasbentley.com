@@ -1,103 +1,59 @@
 <template>
   <div id="resume" class="container">
     <div class="row">
-      <div class="col">
-        <h1 class="txt-white">My Resumé</h1>
-      </div>
+      <h1 class="txt-white">My Resumé</h1>
     </div>
     <div class="row">
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <div class="text-center mb-2">
-              <h2 class="card-title">Flechas W. Bentley</h2>
-              <p class="card-subtitle">Pineville, LA 71360</p>
-              <p class="card-subtitle">
-                <strong>Email: </strong>Flechas.Bentley@gmail.com
-              </p>
-              <p class="card-subtitle mb-5">
-                <strong>Github: </strong
-                ><a target="_blank" href="https://github.com/Flake85"
-                  >https://github.com/Flake85</a
-                >
+      <div class="card">
+        <div class="card-body">
+          <div class="row mb-5 mt-5">
+            <div class="col-9">
+              <h1 class="card-title"><strong>Flechas Bentley</strong></h1>
+              <p>Motivated to learn new things</p>
+            </div>
+            <div class="col-3">
+              <p>
+                Pineville, LA 71360 <br />
+                <strong>Flechas.Bentley@gmail.com</strong><br />
+                <strong>github.com/Flake85</strong>
               </p>
             </div>
-            <h4 class="text-decoration-underline mb-4">Work Experience</h4>
-            <div v-for="job in jobs" :key="job.company" class="mb-5">
-              <div class="row">
-                <div class="col-sm text-sm-center order-sm-2">
-                  <h4 class="mb-0">
-                    <strong>{{ job.company }}</strong>
-                  </h4>
+          </div>
+          <div class="row">
+            <div class="col-9 pe-5">
+              <h6 class="section-title"><strong>EXPERIENCE</strong></h6>
+              <div v-for="job in jobs" :key="job.company" class="mb-5">
+                <div class="row">
+                  <p>
+                    <strong>{{ job.company }}, </strong> {{ job.location }}
+                    <i class="bi bi-dash"></i> <em>{{ job.title }}</em
+                    ><br />
+                  </p>
+                  <p class="fw-light">{{ job.datesEmployed }}</p>
                 </div>
-                <div class="col-sm text-sm-end order-sm-3">
-                  <p class="mb-0">{{ job.location }}</p>
-                </div>
-                <div class="col-sm order-sm-1">
-                  <div v-if="job.datesEmployed2">
-                    <p class="mb-0">{{ job.datesEmployed }}</p>
-                    <p>{{ job.datesEmployed2 }}</p>
-                  </div>
-                  <div v-else>
-                    <p>{{ job.datesEmployed }}</p>
-                  </div>
-                </div>
-              </div>
-              <p class="mb-0">
-                <strong>{{ job.title }}</strong>
-              </p>
-              <ul>
-                <li v-for="(duty, index) in job.duties" :key="index">
-                  {{ duty.duty }}
-                </li>
-              </ul>
-            </div>
-            <h4 class="text-decoration-underline mb-4">Education</h4>
-            <div class="row">
-              <div class="col-sm text-sm-center order-sm-2">
-                <h4 class="mb-0"><strong>Pineville High School</strong></h4>
-              </div>
-              <div class="col-sm text-sm-end order-sm-3">
-                <p class="mb-0">Pineville, LA</p>
-              </div>
-              <div class="col-sm order-sm-1">
-                <p>1999 - 2004</p>
-              </div>
-            </div>
-            <ul class="mb-5">
-              <li>Diploma</li>
-            </ul>
-            <h4 class="text-decoration-underline mb-4">Tech Stack</h4>
-            <div class="row">
-              <div class="col-sm">
-                <ul class="mb-0">
-                  <li>HTML</li>
-                  <li>Vue</li>
-                  <li>Digital Ocean</li>
-                  <li>Github</li>
-                  <li>TypeScript</li>
+                <ul>
+                  <li v-for="(duty, index) in job.duties" :key="index">
+                    {{ duty.duty }}
+                  </li>
                 </ul>
               </div>
-              <div class="col-sm">
-                <ul class="mb-0">
-                  <li>CSS</li>
-                  <li>Nuxt</li>
-                  <li>Git</li>
-                  <li>Linux</li>
-                  <li>Docker</li>
-                </ul>
-              </div>
-              <div class="col-sm">
-                <ul class="mb-0">
-                  <li>JavaScript</li>
-                  <li>GoLang</li>
-                  <li>Gitlab</li>
-                  <li>Windows</li>
-                  <li>MySQL</li>
-                </ul>
-              </div>
-              <div class="col"><span /></div>
             </div>
+            <div class="col-3">
+              <h6 class="section-title"><strong>SKILLS</strong></h6>
+              <div v-for="skill in skills" :key="skill">
+                {{ skill }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <h6 class="section-title"><strong>EDUCATION</strong></h6>
+          </div>
+          <div class="row">
+            <p>
+              <strong>Pineville High School, </strong> Pineville, LA
+              <i class="bi bi-dash"></i> <em>Diploma</em><br />
+            </p>
+            <p class="fw-light">1999 - 2004</p>
           </div>
         </div>
       </div>
@@ -114,12 +70,12 @@ export default defineComponent({
         {
           company: "Uniti Global",
           location: "Aurora, CO",
-          datesEmployed: "1/2020 - Present",
+          datesEmployed: "January 2020 - Present",
           title: "Front End Developer",
           duties: [
             {
               duty:
-                "Create user-friendly web pages using various programming languages including, but not limited to HTML, CSS, JavaScript and GoLang"
+                "Create user-friendly web pages using various programming languages including, but not limited to HTML, CSS, JavaScript and GoLang."
             },
             {
               duty:
@@ -133,35 +89,35 @@ export default defineComponent({
             },
             {
               duty:
-                " Help with code reviews and code versioning using a GitLab repository"
+                "Help with code reviews and code versioning using a GitLab repository."
             }
           ]
         },
         {
           company: "D&J Pools",
           location: "Shreveport, LA",
-          datesEmployed: "3/2017 - 10/2018",
-          datesEmployed2: "5/2003 - 9/2012",
+          datesEmployed:
+            "March 2017 - October 2018 + May 2003 - September 2012",
           title: "Job Foreman",
           duties: [
             {
               duty:
-                "Ensure necessary equipment was loaded onto truck on a daily basis."
+                "Ensure necessary equipment is loaded onto trucks on a daily basis."
             },
             {
               duty:
-                "Measure pools accurately with various equipment for liner jobs and installs."
+                "Measure pools accurately with various equipment for liner jobs and installs. "
             },
             {
               duty: "Work closely with customers one-on-one."
             },
             {
               duty:
-                "Write up bills for customers when job was completed to our standards and beyond the customer's satisfaction."
+                "Write up bills for customers when the job was completed to our standards and beyond the customer's satisfaction."
             },
             {
               duty:
-                "Pick up pool kits from warehouse and verified the contents with the purchase order."
+                "Pick up pool kits from the warehouse and verify the contents with the purchase order."
             },
             {
               duty: "Supervised up to four employees."
@@ -171,12 +127,12 @@ export default defineComponent({
         {
           company: "Distran Steel",
           location: "Pineville, LA",
-          datesEmployed: "5/2014 - 9/2014",
+          datesEmployed: "May 2014 - September 2014",
           title: "Machine Operator",
           duties: [
             {
               duty:
-                "Work in a fast-paced production enviroment with sensitive deadlines."
+                "Work in a fast-paced production environment with time sensitive deadlines."
             },
             {
               duty:
@@ -205,12 +161,12 @@ export default defineComponent({
         {
           company: "Old South Fabricators",
           location: "Lecompte, LA",
-          datesEmployed: "2/2013 - 3/2014",
+          datesEmployed: "February 2013 - March 2014",
           title: "Quality Control Manager",
           duties: [
             {
               duty:
-                "Work in a fast-paced production enviroment with sensitive deadlines."
+                "Work in a fast-paced production environment with time sensitive deadlines."
             },
             {
               duty:
@@ -222,11 +178,11 @@ export default defineComponent({
             },
             {
               duty:
-                "Inspect blueprints and autocad programs to verify they match and make corrective actions if needed."
+                "Inspect blueprints and autocad programs to verify they match and make corrective actions if needed. "
             },
             {
               duty:
-                "Fill out various forms for records out of specification and parts the pass inspections."
+                "Fill out various forms for records out of specification and parts that pass inspections."
             },
             {
               duty: "Label and prep all out-going packages for shipping."
@@ -243,13 +199,28 @@ export default defineComponent({
             },
             {
               duty:
-                "Help with hiring process and train new employees in my department."
+                "Help with the hiring process and train new employees in my department."
             },
             {
-              duty: "Particapate in monthly production meetings."
+              duty: "Participate in monthly production meetings."
             }
           ]
         }
+      ],
+      skills: [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "TypeScript",
+        "VueJs",
+        "Node",
+        "Golang",
+        "Digital Ocean",
+        "Git",
+        "Docker",
+        "MySQL",
+        "Linux",
+        "Windows 10"
       ]
     };
   }
@@ -262,8 +233,11 @@ export default defineComponent({
 .txt-white {
   color: white;
 }
-.tech-list {
-  float: left;
-  margin: 0 20px;
+.card-title {
+  font-size: 75px;
+}
+.section-title {
+  margin-bottom: 3rem;
+  color: #0d6efd;
 }
 </style>

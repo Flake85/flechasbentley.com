@@ -115,8 +115,6 @@ export default defineComponent({
 #banner {
   height: calc(100vh - 65.97px);
   display: flex;
-  // TODO: decide on the following:
-  // background-image: linear-gradient(to right, #08f, #30cc8b);
 }
 .panel {
   flex: 1;
