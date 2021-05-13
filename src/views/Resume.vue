@@ -7,11 +7,11 @@
       <div class="card">
         <div class="card-body">
           <div class="row mb-5 mt-5">
-            <div class="col-9">
+            <div class="col-lg-9">
               <h1 class="card-title"><strong>Flechas Bentley</strong></h1>
               <p>Motivated to learn new things</p>
             </div>
-            <div class="col-3">
+            <div class="col-lg-3">
               <p>
                 Pineville, LA 71360 <br />
                 <strong>Flechas.Bentley@gmail.com</strong><br />
@@ -20,7 +20,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-9 pe-5">
+            <div class="col-lg-9 pe-5 mb-5">
               <h6 class="section-title"><strong>EXPERIENCE</strong></h6>
               <div v-for="job in jobs" :key="job.company" class="mb-5">
                 <div class="row">
@@ -37,23 +37,20 @@
                   </li>
                 </ul>
               </div>
+              <h6 class="section-title"><strong>EDUCATION</strong></h6>
+              <p>
+                <strong>Pineville High School, </strong> Pineville, LA
+                <i class="bi bi-dash"></i> <em>Diploma</em><br />
+              </p>
+              <p class="fw-light">1999 - 2004</p>
             </div>
-            <div class="col-3">
+
+            <div class="col-lg-3">
               <h6 class="section-title"><strong>SKILLS</strong></h6>
               <div v-for="skill in skills" :key="skill">
                 {{ skill }}
               </div>
             </div>
-          </div>
-          <div class="row">
-            <h6 class="section-title"><strong>EDUCATION</strong></h6>
-          </div>
-          <div class="row">
-            <p>
-              <strong>Pineville High School, </strong> Pineville, LA
-              <i class="bi bi-dash"></i> <em>Diploma</em><br />
-            </p>
-            <p class="fw-light">1999 - 2004</p>
           </div>
         </div>
       </div>
