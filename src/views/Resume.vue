@@ -11,7 +11,7 @@
               <h1 class="card-title"><strong>Flechas Bentley</strong></h1>
               <p>Motivated to learn new things</p>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 text-nowrap">
               <p>
                 Pineville, LA 71360 <br />
                 <strong>Flechas.Bentley@gmail.com</strong><br />
