@@ -29,7 +29,9 @@
           <p class="card-text">
             Welcome to flechasbentley.com! If you are reading this, then you are
             here too early. That only means you get to see things as I develop
-            my first deployed website. Be sure to check back for more updates!
+            my first deployed website. While you're here, check out my
+            <router-link to="/resume">resumé</router-link>. Also, make sure to
+            check back for more updates!
           </p>
         </div>
       </div>
