@@ -230,7 +230,7 @@ export default defineComponent({
 .txt-white {
   color: white;
 }
-.card-title {
+h1.card-title {
   font-size: 75px;
 }
 .section-title {
