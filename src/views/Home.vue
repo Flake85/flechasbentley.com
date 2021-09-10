@@ -3,7 +3,8 @@
     <div id="banner" class="container">
       <div class="panel">
         <h1
-          class="text-center logotxt head text-light animate__animated animate__rubberBand"
+          v-scrollanimation="'animate__rubberBand'"
+          class="text-center logotxt head text-light"
         >
           Flechas Bentley
         </h1>

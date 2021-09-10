@@ -77,7 +77,6 @@ export default defineComponent({
 }
 #footer {
   width: 100%;
-  background-color: #212529;
   display: flex;
   text-align: center;
   justify-content: center;
