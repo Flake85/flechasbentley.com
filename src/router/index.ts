@@ -13,6 +13,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/Resume.vue")
   },
   {
+    path: "/phasmophobia",
+    name: "Phasmophobia",
+    component: () => import("../views/Phasmo.vue")
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: "404",
     component: () => import("../views/404.vue")
