@@ -4,16 +4,16 @@
       <div class="card-body">
         <div class="card-title">
           <h5>Phasmophobia Calculator</h5>
-          <button
-            type="button"
-            v-for="evidence in tools"
-            :key="evidence.id"
-            :class="getGhostBtnClass(evidence)"
-            class="btn"
-            @click="selected(evidence)"
-          >
-            {{ evidence.name }}
-          </button>
+          <template v-for="evidence in tools" :key="evidence.id">
+            <button
+              type="button"
+              :class="getEvidenceBtnClass(evidence)"
+              class="btn padded-btn"
+              @click="selected(evidence)"
+            >
+              {{ evidence.name }}
+            </button>
+          </template>
         </div>
         <div class="card-body">
           <div v-if="evidences.found.length || evidences.notFound.length">
@@ -80,22 +80,38 @@
             <table class="table">
               <thead>
                 <tr>
-                  <template v-for="ghost in ghostStats" :key="ghost.ghostId">
-                    <th scope="col">
-                      {{ getGhostById(ghosts, ghost.ghostId).name }}
-                    </th>
-                  </template>
+                  <th>Ghosts Caught</th>
+                  <th
+                    v-for="ghost in localGhosts"
+                    :key="ghost.ghostId"
+                    scope="col"
+                  >
+                    {{ getGhostById(ghosts, ghost.ghostId).name }}
+                  </th>
+                  <th>Total:</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td v-for="ghost in ghostStats" :key="ghost.ghostId">
+                  <td>This Session:</td>
+                  <td v-for="ghost in sessionGhosts" :key="ghost.ghostId">
                     {{ ghost.timesFound }}
                   </td>
+                  <td>{{ totalCaptured(sessionGhosts) }}</td>
+                </tr>
+                <tr>
+                  <td>All Time:</td>
+                  <td v-for="ghost in localGhosts" :key="ghost.ghostId">
+                    {{ ghost.timesFound }}
+                  </td>
+                  <td>{{ totalCaptured(localGhosts) }}</td>
                 </tr>
               </tbody>
             </table>
-            <button class="btn btn-danger" @click="releaseAll">
+            <button class="btn btn-danger padded-btn" @click="clearSession">
+              Clear Session
+            </button>
+            <button class="btn btn-danger padded-btn" @click="clearAllStorage">
               Release All Ghosts
             </button>
           </div>
@@ -111,13 +127,9 @@ import {
   ghosts,
   Evidence,
   evidence,
+  GhostStats,
   getGhostById
 } from "./../lib/phasmophobia";
-
-interface GhostStats {
-  ghostId: number;
-  timesFound: number;
-}
 
 export default defineComponent({
   name: "Phasmophobia",
@@ -129,30 +141,52 @@ export default defineComponent({
         found: [] as Evidence[],
         notFound: [] as Evidence[]
       },
-      ghostStats: [] as GhostStats[]
+      localGhosts: [] as GhostStats[],
+      sessionGhosts: [] as GhostStats[]
     };
   },
   mounted() {
-    if (localStorage.ghosts) {
-      this.ghostStats = JSON.parse(localStorage.getItem("ghosts") as string);
-    } else {
-      this.ghosts.forEach(ghost => {
-        this.ghostStats.push({ ghostId: ghost.id, timesFound: 0 });
-      });
-    }
+    localStorage.ghosts
+      ? (this.localGhosts = this.getStoredGhosts(localStorage))
+      : this.fillGhostStatsData(this.localGhosts);
+    sessionStorage.ghosts
+      ? (this.sessionGhosts = this.getStoredGhosts(sessionStorage))
+      : this.fillGhostStatsData(this.sessionGhosts);
   },
   watch: {
-    ghostStats: {
+    localGhosts: {
       handler(newFound) {
         localStorage.setItem("ghosts", JSON.stringify(newFound));
+      },
+      deep: true
+    },
+    sessionGhosts: {
+      handler(newFound) {
+        sessionStorage.setItem("ghosts", JSON.stringify(newFound));
       },
       deep: true
     }
   },
   computed: {
     displayGhosts(): Ghost[] {
-      const possible = this.ghosts.filter(ghost => {
-        if (this.evidences.found.length < 1) return false;
+      const possible: Ghost[] = this.filterGhostsWithFound();
+      return this.filterGhostWithNotFound(possible);
+    }
+  },
+  methods: {
+    filterGhostWithNotFound(possible: Ghost[]) {
+      return possible.filter(ghost => {
+        let found = false;
+        this.evidences.notFound.forEach(evidence => {
+          if (ghost.evidence.includes(evidence)) {
+            found = true;
+          }
+        });
+        return !found;
+      });
+    },
+    filterGhostsWithFound() {
+      return this.ghosts.filter(ghost => {
         let found = true;
         this.evidences.found.forEach(evidence => {
           if (!ghost.evidence.includes(evidence)) {
@@ -161,92 +195,97 @@ export default defineComponent({
         });
         return found;
       });
-      if (this.evidences.found.length < 1) {
-        return this.ghosts.filter(ghost => {
-          let found = false;
-          this.evidences.notFound.forEach(evidence => {
-            if (ghost.evidence.includes(evidence)) {
-              found = true;
-            }
-          });
-          return !found;
-        });
-      } else {
-        return possible.filter(ghost => {
-          let found = false;
-          this.evidences.notFound.forEach(evidence => {
-            if (ghost.evidence.includes(evidence)) {
-              found = true;
-            }
-          });
-          return !found;
+    },
+    totalCaptured(...storage: Array<GhostStats[]>): number {
+      let sum = 0;
+      for (let x = 0; x < storage.length; x++) {
+        storage[x].forEach((ghost: GhostStats) => {
+          sum += ghost.timesFound;
         });
       }
-    }
-  },
-
-  methods: {
-    selected(evidence: Evidence) {
-      if (
-        !this.evidences.found.includes(evidence) &&
-        !this.evidences.notFound.includes(evidence)
-      ) {
-        this.evidences.found.push(evidence);
-        return;
-      }
-      if (this.evidences.found.includes(evidence)) {
-        this.evidences.found = this.evidences.found.filter(
-          ev => ev !== evidence
-        );
-        this.evidences.notFound.push(evidence);
-        return;
-      }
-      if (this.evidences.notFound.includes(evidence)) {
-        this.evidences.notFound = this.evidences.notFound.filter(
-          ev => ev !== evidence
-        );
-      }
+      return sum;
     },
-    getGhostBtnClass(evidence: Evidence) {
-      if (this.evidences.found.includes(evidence)) {
-        return "btn-success";
-      } else if (this.evidences.notFound.includes(evidence)) {
-        return "btn-danger";
-      }
-      return "btn-dark";
+    getStoredGhosts(storage: Storage): GhostStats[] {
+      return JSON.parse(storage.getItem("ghosts") as string);
     },
-    captureGhost(ghost: Ghost) {
-      const index = this.ghostStats.findIndex(el => {
-        return ghost.id === el.ghostId;
-      });
-      this.ghostStats[index].timesFound += 1;
-      this.evidences.found = [];
-      this.evidences.notFound = [];
+    fillGhostStatsData(...storedGhosts: Array<GhostStats[]>) {
+      for (let x = 0; x < storedGhosts.length; x++) {
+        this.ghosts.forEach(ghost => {
+          storedGhosts[x].push({ ghostId: ghost.id, timesFound: 0 });
+        });
+      }
     },
     resetEvidence() {
       (this.evidences.found = []), (this.evidences.notFound = []);
     },
-    getGhostById: getGhostById,
-    releaseAll() {
+    selected(evidence: Evidence) {
+      return !this.evidences.found.includes(evidence) &&
+        !this.evidences.notFound.includes(evidence)
+        ? this.evidences.found.push(evidence)
+        : this.evidences.found.includes(evidence)
+        ? ((this.evidences.found = this.evidences.found.filter(
+            ev => ev !== evidence
+          )),
+          this.evidences.notFound.push(evidence))
+        : (this.evidences.notFound = this.evidences.notFound.filter(
+            ev => ev !== evidence
+          ));
+    },
+    getEvidenceBtnClass(evidence: Evidence) {
+      return this.evidences.found.includes(evidence)
+        ? "btn-success"
+        : this.evidences.notFound.includes(evidence)
+        ? "btn-danger"
+        : "btn-dark";
+    },
+    updateGhostStats(ghost: Ghost, ...storage: Array<GhostStats[]>) {
+      for (let x = 0; x < storage.length; x++) {
+        const index = storage[x].findIndex((ghostStat: GhostStats) => {
+          return ghost.id === ghostStat.ghostId;
+        });
+        storage[x][index].timesFound += 1;
+      }
+    },
+    captureGhost(ghost: Ghost) {
+      this.updateGhostStats(ghost, this.localGhosts, this.sessionGhosts);
+      this.resetEvidence();
+    },
+    clearSession() {
+      if (this.totalCaptured(this.sessionGhosts) !== 0) {
+        const confirm = prompt(
+          "This action removes all ghosts from this session.\nAll ghosts found this session are saved in the all time row...\nType 'confirm' to clear this session"
+        );
+        if (confirm === "confirm") {
+          this.sessionGhosts = [];
+          this.fillGhostStatsData(this.sessionGhosts);
+        }
+      } else {
+        alert("You must have ghosts captured this session to clear it!");
+      }
+    },
+    clearAllStorage() {
       const confirm = prompt(
-        "Are you sure? This action cannot be undone!\nType 'release' and click ok to confirm!"
+        "This action removes all captured ghosts in this session AND all time captured.\nAre you sure? This action cannot be undone!\nType 'release' and click ok to confirm!"
       );
       if (confirm === "release") {
-        this.ghostStats = [];
-        this.ghosts.forEach(ghost => {
-          this.ghostStats.push({ ghostId: ghost.id, timesFound: 0 });
-        });
+        this.localGhosts = [];
+        this.sessionGhosts = [];
+        this.fillGhostStatsData(this.localGhosts, this.sessionGhosts);
       }
-    }
+    },
+    getGhostById: getGhostById
   }
 });
 </script>
 
 <style>
 #phasmo-card {
-  min-height: calc(100vh - 65.97px);
+  min-height: calc(100vh - (66px + 72px));
+}
+.padded-btn {
+  margin-right: 5px;
 }
 .padded {
-  padding-bottom: 150px;
+  padding-bottom: 300px;
 }
 </style>

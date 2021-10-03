@@ -11,6 +11,11 @@ export interface Ghost {
   strength: string;
 }
 
+export interface GhostStats {
+  ghostId: number;
+  timesFound: number;
+}
+
 export const evidence = {
   EMF5: {
     name: "EMF 5",
