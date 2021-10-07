@@ -75,8 +75,9 @@
               <strong>Red = This Evidence is Definitely NOT an Option</strong>
             </p>
           </div>
-          <div class="position-absolute bottom-0">
-            <h5>Captured Ghosts:</h5>
+
+          <h5>Captured Ghosts:</h5>
+          <div class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
@@ -108,13 +109,14 @@
                 </tr>
               </tbody>
             </table>
-            <button class="btn btn-danger padded-btn" @click="clearSession">
-              Clear Session
-            </button>
-            <button class="btn btn-danger padded-btn" @click="clearAllStorage">
-              Release All Ghosts
-            </button>
           </div>
+
+          <button class="btn btn-danger padded-btn" @click="clearSession">
+            Clear Session
+          </button>
+          <button class="btn btn-danger padded-btn" @click="clearAllStorage">
+            Release All Ghosts
+          </button>
         </div>
       </div>
     </div>
@@ -146,12 +148,16 @@ export default defineComponent({
     };
   },
   mounted() {
-    localStorage.ghosts
-      ? (this.localGhosts = this.getStoredGhosts(localStorage))
-      : this.fillGhostStatsData(this.localGhosts);
-    sessionStorage.ghosts
-      ? (this.sessionGhosts = this.getStoredGhosts(sessionStorage))
-      : this.fillGhostStatsData(this.sessionGhosts);
+    if (localStorage.ghosts) {
+      this.localGhosts = this.getStoredGhosts(localStorage);
+    } else {
+      this.fillGhostStatsData(this.localGhosts);
+    }
+    if (sessionStorage.ghosts) {
+      this.sessionGhosts = this.getStoredGhosts(sessionStorage);
+    } else {
+      this.fillGhostStatsData(this.sessionGhosts);
+    }
   },
   watch: {
     localGhosts: {
@@ -219,24 +225,35 @@ export default defineComponent({
       (this.evidences.found = []), (this.evidences.notFound = []);
     },
     selected(evidence: Evidence) {
-      return !this.evidences.found.includes(evidence) &&
+      if (
+        !this.evidences.found.includes(evidence) &&
         !this.evidences.notFound.includes(evidence)
-        ? this.evidences.found.push(evidence)
-        : this.evidences.found.includes(evidence)
-        ? ((this.evidences.found = this.evidences.found.filter(
-            ev => ev !== evidence
-          )),
-          this.evidences.notFound.push(evidence))
-        : (this.evidences.notFound = this.evidences.notFound.filter(
-            ev => ev !== evidence
-          ));
+      ) {
+        this.evidences.found.push(evidence);
+        return;
+      }
+      if (this.evidences.found.includes(evidence)) {
+        this.evidences.found = this.evidences.found.filter(
+          ev => ev !== evidence
+        );
+        this.evidences.notFound.push(evidence);
+        return;
+      }
+      if (this.evidences.notFound.includes(evidence)) {
+        this.evidences.notFound = this.evidences.notFound.filter(
+          ev => ev !== evidence
+        );
+      }
     },
+
     getEvidenceBtnClass(evidence: Evidence) {
-      return this.evidences.found.includes(evidence)
-        ? "btn-success"
-        : this.evidences.notFound.includes(evidence)
-        ? "btn-danger"
-        : "btn-dark";
+      if (this.evidences.found.includes(evidence)) {
+        return "btn-success";
+      }
+      if (this.evidences.notFound.includes(evidence)) {
+        return "btn-danger";
+      }
+      return "btn-dark";
     },
     updateGhostStats(ghost: Ghost, ...storage: Array<GhostStats[]>) {
       for (let x = 0; x < storage.length; x++) {
@@ -284,6 +301,7 @@ export default defineComponent({
 }
 .padded-btn {
   margin-right: 5px;
+  margin-top: 5px;
 }
 .padded {
   padding-bottom: 300px;
