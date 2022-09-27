@@ -1,16 +1,14 @@
 FROM node:16 AS build
 
 RUN apt-get -y update \
-    && apt-get install -y git
-RUN yarn global add @vue/cli
+    && apt-get autoremove -y \
+    && apt-get autoclean -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY . /app
 RUN yarn install
 RUN yarn build
-RUN apt-get autoremove -y \
-    && apt-get autoclean -y \
-    && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
 
 FROM nginx:latest
 RUN mkdir /app
