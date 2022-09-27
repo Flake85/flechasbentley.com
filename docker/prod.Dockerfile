@@ -1,4 +1,4 @@
-FROM node:lts-buster-slim AS build
+FROM node:latest AS build
 
 RUN apt-get -y update \
     && apt-get autoremove -y \
@@ -6,7 +6,6 @@ RUN apt-get -y update \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
-RUN yarn global add @vue/cli
 COPY . /app
 RUN yarn install
 RUN yarn build
