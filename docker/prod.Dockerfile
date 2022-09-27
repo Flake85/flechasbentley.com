@@ -1,9 +1,9 @@
 FROM node:lts-alpine AS build
 
 RUN apt-get -y update \
-    && apt-get autoremove -y \
-    && apt-get autoclean -y \
-    && apt-get clean -y \
+    && apk autoremove -y \
+    && apk autoclean -y \
+    && apk clean -y \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY . /app
