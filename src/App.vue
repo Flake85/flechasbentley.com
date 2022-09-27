@@ -31,6 +31,11 @@
                 >Resumé</router-link
               >
             </li>
+            <li class="nav-item">
+              <router-link to="/phasmophobia" class="nav-link" exact
+                >Phasmophobia</router-link
+              >
+            </li>
           </ul>
         </div>
       </div>
@@ -81,7 +86,7 @@ export default defineComponent({
   text-align: center;
   justify-content: center;
 }
-.router-link-active {
-  //add border to active link
-}
+// .router-link-active {
+//   //add border to active link
+// }
 </style>
