@@ -1,9 +1,9 @@
 FROM node:14 AS build
 
-RUN apk -y update \
-    && apk autoremove -y \
-    && apk autoclean -y \
-    && apk clean -y \
+RUN apt-get -y update \
+    && apt-get autoremove -y \
+    && apt-get autoclean -y \
+    && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY . /app
