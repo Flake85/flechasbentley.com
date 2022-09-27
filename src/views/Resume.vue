@@ -47,17 +47,23 @@
                 </p>
                 <p class="fw-light">1999 - 2004</p>
               </div>
-              <h6 class="section-title"><strong>CERTIFICATIONS</strong></h6>
-              <div v-for="cert in certifications" :key="cert.provider">
-                <p
-                  v-for="certification in cert.certification"
-                  :key="certification.link"
-                >
-                  <strong>{{ cert.provider }}: </strong>
-                  <a target="_blank" :href="certification.link">{{
-                    certification.title
-                  }}</a>
-                </p>
+              <div class="mb-5">
+                <h6 class="section-title"><strong>CERTIFICATIONS</strong></h6>
+                <div v-for="cert in certifications" :key="cert.provider">
+                  <div
+                    v-for="certification in cert.certification"
+                    :key="certification.title"
+                  >
+                    <ul>
+                      <li>
+                        <strong>{{ cert.provider }}: </strong
+                        ><a :href="certification.link">{{
+                          certification.title
+                        }}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-lg-3">
@@ -74,18 +80,16 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import { mapGetters } from "vuex";
+import { jobs, certifications, skills } from "./../lib/resume";
+
 export default defineComponent({
   name: "resume",
   data() {
-    return {};
-  },
-  computed: {
-    ...mapGetters({
-      jobs: "getJobs",
-      certifications: "getCertifications",
-      skills: "getSkills"
-    })
+    return {
+      jobs,
+      certifications,
+      skills
+    };
   }
 });
 </script>

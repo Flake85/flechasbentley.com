@@ -99,18 +99,6 @@ export default defineComponent({
   },
   beforeUnmount() {
     clearInterval(this.intervalHandle);
-  },
-  computed: {
-    age() {
-      const dob = new Date("1985/12/26");
-      const now = new Date();
-      let age = now.getFullYear() - dob.getFullYear();
-      const m = now.getMonth() - dob.getMonth();
-      if (m < 0 || (m === 0 && now.getDate() < dob.getDate())) {
-        age--;
-      }
-      return age;
-    }
   }
 });
 </script>

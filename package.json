@@ -8,6 +8,20 @@
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
+  "jest": {
+    "moduleFileExtenstions": [
+      "js",
+      "ts",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      ".*//.(vue)$": "vue-jest",
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testURL": "http://flechasbentley.test/",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$"
+  },
   "dependencies": {
     "@popperjs/core": "^2.5.4",
     "animate.css": "^4.1.1",
@@ -21,7 +35,8 @@
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.19",
+    "@babel/preset-typescript": "^7.15.0",
+    "@types/jest": "^27.0.2",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.5.0",

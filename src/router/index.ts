@@ -15,7 +15,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/phasmophobia",
     name: "Phasmophobia",
-    component: () => import("../views/Phasmophobia.vue")
+    component: () => import("../views/Phasmo.vue")
   },
   {
     path: "/:pathMatch(.*)*",
