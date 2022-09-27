@@ -1,6 +1,6 @@
 FROM node:lts-alpine AS build
 
-RUN apt-get -y update \
+RUN apk -y update \
     && apk autoremove -y \
     && apk autoclean -y \
     && apk clean -y \
