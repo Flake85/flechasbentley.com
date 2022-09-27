@@ -1,4 +1,4 @@
-FROM node:lts-buster-slim AS build
+FROM node:16 AS build
 
 RUN apt-get -y update \
     && apt-get install -y git
