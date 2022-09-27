@@ -31,6 +31,11 @@
                 >Resumé</router-link
               >
             </li>
+            <li class="nav-item">
+              <router-link to="/phasmophobia" class="nav-link" exact
+                >Phasmophobia</router-link
+              >
+            </li>
           </ul>
         </div>
       </div>

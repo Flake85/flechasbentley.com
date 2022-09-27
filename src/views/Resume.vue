@@ -37,14 +37,33 @@
                   </li>
                 </ul>
               </div>
-              <h6 class="section-title"><strong>EDUCATION</strong></h6>
-              <p>
-                <strong>Pineville High School, </strong> Pineville, LA
-                <i class="bi bi-dash"></i> <em>Diploma</em><br />
-              </p>
-              <p class="fw-light">1999 - 2004</p>
+              <div class="mb-5">
+                <h6 class="section-title"><strong>EDUCATION</strong></h6>
+                <p>
+                  <strong>Pineville High School, </strong> Pineville, LA
+                  <i class="bi bi-dash"></i> <em>Diploma</em><br />
+                </p>
+                <p class="fw-light">1999 - 2004</p>
+              </div>
+              <div class="mb-5">
+                <h6 class="section-title"><strong>CERTIFICATIONS</strong></h6>
+                <div v-for="cert in certifications" :key="cert.provider">
+                  <div
+                    v-for="certification in cert.certification"
+                    :key="certification.title"
+                  >
+                    <ul>
+                      <li>
+                        <strong>{{ cert.provider }}: </strong
+                        ><a :href="certification.link">{{
+                          certification.title
+                        }}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
-
             <div class="col-lg-3">
               <h6 class="section-title"><strong>SKILLS</strong></h6>
               <div v-for="skill in skills" :key="skill">
@@ -59,13 +78,14 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import { jobs, skills } from "./../lib/resume";
+import { jobs, certifications, skills } from "./../lib/resume";
 
 export default defineComponent({
   name: "resume",
   data() {
     return {
       jobs,
+      certifications,
       skills
     };
   }

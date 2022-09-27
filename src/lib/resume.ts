@@ -6,11 +6,21 @@ export interface Jobs {
   duties: string;
 }
 
+export interface Certifications {
+  provider: string;
+  certification: Certification[];
+}
+
+export interface Certification {
+  title: string;
+  link: string;
+}
+
 export const jobs = [
   {
     company: "Uniti Global",
     location: "Aurora, CO",
-    datesEmployed: "January 2020 - Present",
+    datesEmployed: "January 2020 - January 2022",
     title: "Front End Developer",
     duties: [
       {
@@ -146,12 +156,43 @@ export const jobs = [
     ]
   }
 ];
+
+export const certifications = [
+  {
+    provider: "FreeCodeCamp",
+    certification: [
+      {
+        title: "Responsive Web Design",
+        link:
+          "https://www.freecodecamp.org/certification/flakeb/responsive-web-design"
+      },
+      {
+        title: "JavaScript Algorithms and Data Structures",
+        link:
+          "https://www.freecodecamp.org/certification/flakeb/javascript-algorithms-and-data-structures"
+      }
+    ]
+  },
+  {
+    provider: "Udemy",
+    certification: [
+      {
+        title:
+          "JavaScript Algorithms and Data Structures MasterClass By Colt Steele",
+        link:
+          "https://www.udemy.com/certificate/UC-55a5f3c4-9e63-422d-bc81-6fd0ccee0ed7/"
+      }
+    ]
+  }
+];
+
 export const skills = [
   "HTML",
   "CSS",
   "JavaScript",
   "TypeScript",
   "VueJs",
+  "ReactJs",
   "Node",
   "Golang",
   "Digital Ocean",
