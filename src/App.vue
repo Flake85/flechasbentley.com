@@ -86,4 +86,7 @@ export default defineComponent({
   text-align: center;
   justify-content: center;
 }
+// .router-link-active {
+//   //add border to active link
+// }
 </style>

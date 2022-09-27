@@ -8,7 +8,9 @@
         <div class="card-body">
           <div class="row mb-5 mt-5">
             <div class="col-lg-9">
-              <h1 class="card-title"><strong>Flechas Bentley</strong></h1>
+              <h1 class="card-title">
+                <strong>Flechas Bentley</strong>
+              </h1>
               <p>Motivated to learn new things</p>
             </div>
             <div class="col-lg-3 text-nowrap">
