@@ -1,4 +1,4 @@
-FROM node:latest AS build
+FROM node:lts-alpine AS build
 
 RUN apt-get -y update \
     && apt-get autoremove -y \
