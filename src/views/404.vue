@@ -30,10 +30,10 @@ export default defineComponent({
   name: "404",
   methods: {
     directToHome(): void {
-      this.$router.push("/");
+      // this.$router.push("/");
     }
   }
-});
+} as any);
 </script>
 <style lang="scss" scoped>
 #lost-main {
