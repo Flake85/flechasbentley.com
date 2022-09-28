@@ -1,4 +1,4 @@
-FROM node:16 AS build
+FROM node:lts-buster-slim AS build
 
 RUN apt-get -y update \
     && apt-get autoremove -y \
