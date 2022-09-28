@@ -1,4 +1,4 @@
-FROM node:11.13.0-alpine AS build
+FROM node:16 AS build
 
 RUN apk -y update \
     && apk autoremove -y \
