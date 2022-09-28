@@ -64,7 +64,7 @@ export default defineComponent({
       return new Date().getFullYear();
     }
   }
-});
+} as any);
 </script>
 <style lang="scss">
 .slide-enter-active,

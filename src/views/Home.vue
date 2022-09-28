@@ -100,7 +100,7 @@ export default defineComponent({
   beforeUnmount() {
     clearInterval(this.intervalHandle);
   }
-});
+} as any);
 </script>
 <style lang="scss" scoped>
 #banner {

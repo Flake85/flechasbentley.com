@@ -55,7 +55,7 @@
                     <ul>
                       <li>
                         <strong>{{ cert.provider }}: </strong
-                        ><a :href="certification.link">{{
+                        ><a :href="certification.link" target="_blank">{{
                           certification.title
                         }}</a>
                       </li>
@@ -89,7 +89,7 @@ export default defineComponent({
       skills
     };
   }
-});
+} as any);
 </script>
 <style lang="scss">
 #resume {

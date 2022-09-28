@@ -161,13 +161,13 @@ export default defineComponent({
   },
   watch: {
     localGhosts: {
-      handler(newFound) {
+      handler(newFound: any) {
         localStorage.setItem("ghosts", JSON.stringify(newFound));
       },
       deep: true
     },
     sessionGhosts: {
-      handler(newFound) {
+      handler(newFound: any) {
         sessionStorage.setItem("ghosts", JSON.stringify(newFound));
       },
       deep: true
@@ -175,15 +175,15 @@ export default defineComponent({
   },
   computed: {
     displayGhosts(): Ghost[] {
-      const possible: Ghost[] = this.filterGhostsWithFound();
+      const possible: Ghost[] = this.filterGhostsWithFound() as any;
       return this.filterGhostWithNotFound(possible);
     }
   },
   methods: {
     filterGhostWithNotFound(possible: Ghost[]) {
-      return possible.filter(ghost => {
+      return possible.filter((ghost: Ghost) => {
         let found = false;
-        this.evidences.notFound.forEach(evidence => {
+        this.evidences.notFound.forEach((evidence: Evidence) => {
           if (ghost.evidence.includes(evidence)) {
             found = true;
           }
@@ -192,9 +192,9 @@ export default defineComponent({
       });
     },
     filterGhostsWithFound() {
-      return this.ghosts.filter(ghost => {
+      return this.ghosts.filter((ghost: Ghost) => {
         let found = true;
-        this.evidences.found.forEach(evidence => {
+        this.evidences.found.forEach((evidence: Evidence) => {
           if (!ghost.evidence.includes(evidence)) {
             found = false;
           }
@@ -292,7 +292,7 @@ export default defineComponent({
     },
     getGhostById: getGhostById
   }
-});
+} as any);
 </script>
 
 <style>
