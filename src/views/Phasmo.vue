@@ -175,7 +175,7 @@ export default defineComponent({
   },
   computed: {
     displayGhosts(): Ghost[] {
-      const possible: Ghost[] = this.filterGhostsWithFound() as any;
+      const possible: any = this.filterGhostsWithFound() as any;
       return this.filterGhostWithNotFound(possible);
     }
   },
