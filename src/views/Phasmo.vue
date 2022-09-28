@@ -102,7 +102,10 @@
                 </tr>
                 <tr>
                   <td>All Time:</td>
-                  <td v-for="ghost in localGhosts" :key="ghost.ghostId">
+                  <td
+                    v-for="ghost in localGhosts"
+                    :key="(ghost.ghostId as Ghost)"
+                  >
                     {{ ghost.timesFound }}
                   </td>
                   <td>{{ totalCaptured(localGhosts) }}</td>
@@ -148,6 +151,7 @@ export default defineComponent({
     };
   },
   mounted() {
+    this.ghosts;
     if (localStorage.ghosts) {
       this.localGhosts = this.getStoredGhosts(localStorage);
     } else {
@@ -174,16 +178,16 @@ export default defineComponent({
     }
   },
   computed: {
-    displayGhosts(): Ghost[] {
-      const possible: any = this.filterGhostsWithFound() as any;
-      return this.filterGhostWithNotFound(possible);
+    displayGhosts(): any {
+      const possible: any = (this as any).filterGhostsWithFound();
+      return (this as any).filterGhostWithNotFound(possible);
     }
   },
   methods: {
     filterGhostWithNotFound(possible: Ghost[]) {
       return possible.filter((ghost: Ghost) => {
         let found = false;
-        this.evidences.notFound.forEach((evidence: Evidence) => {
+        (this as any).evidences.notFound.forEach((evidence: Evidence) => {
           if (ghost.evidence.includes(evidence)) {
             found = true;
           }
@@ -191,10 +195,10 @@ export default defineComponent({
         return !found;
       });
     },
-    filterGhostsWithFound() {
-      return this.ghosts.filter((ghost: Ghost) => {
+    filterGhostsWithFound(): Ghost[] {
+      return (this as any).ghosts.filter((ghost: Ghost) => {
         let found = true;
-        this.evidences.found.forEach((evidence: Evidence) => {
+        (this as any).evidences.found.forEach((evidence: Evidence) => {
           if (!ghost.evidence.includes(evidence)) {
             found = false;
           }
@@ -216,41 +220,42 @@ export default defineComponent({
     },
     fillGhostStatsData(...storedGhosts: Array<GhostStats[]>) {
       for (let x = 0; x < storedGhosts.length; x++) {
-        this.ghosts.forEach(ghost => {
+        (this as any).ghosts.forEach((ghost: Ghost) => {
           storedGhosts[x].push({ ghostId: ghost.id, timesFound: 0 });
         });
       }
     },
     resetEvidence() {
-      (this.evidences.found = []), (this.evidences.notFound = []);
+      ((this as any).evidences.found = []),
+        ((this as any).evidences.notFound = []);
     },
     selected(evidence: Evidence) {
       if (
-        !this.evidences.found.includes(evidence) &&
-        !this.evidences.notFound.includes(evidence)
+        !(this as any).evidences.found.includes(evidence) &&
+        !(this as any).evidences.notFound.includes(evidence)
       ) {
-        this.evidences.found.push(evidence);
+        (this as any).evidences.found.push(evidence);
         return;
       }
-      if (this.evidences.found.includes(evidence)) {
-        this.evidences.found = this.evidences.found.filter(
-          ev => ev !== evidence
+      if ((this as any).evidences.found.includes(evidence)) {
+        (this as any).evidences.found = (this as any).evidences.found.filter(
+          (ev: any) => ev !== evidence
         );
-        this.evidences.notFound.push(evidence);
+        (this as any).evidences.notFound.push(evidence);
         return;
       }
-      if (this.evidences.notFound.includes(evidence)) {
-        this.evidences.notFound = this.evidences.notFound.filter(
-          ev => ev !== evidence
+      if ((this as any).evidences.notFound.includes(evidence)) {
+        (this as any).evidences.notFound = (this as any).evidences.notFound.filter(
+          (ev: any) => ev !== evidence
         );
       }
     },
 
     getEvidenceBtnClass(evidence: Evidence) {
-      if (this.evidences.found.includes(evidence)) {
+      if ((this as any).evidences.found.includes(evidence)) {
         return "btn-success";
       }
-      if (this.evidences.notFound.includes(evidence)) {
+      if ((this as any).evidences.notFound.includes(evidence)) {
         return "btn-danger";
       }
       return "btn-dark";
@@ -264,17 +269,21 @@ export default defineComponent({
       }
     },
     captureGhost(ghost: Ghost) {
-      this.updateGhostStats(ghost, this.localGhosts, this.sessionGhosts);
+      this.updateGhostStats(
+        ghost,
+        (this as any).localGhosts,
+        (this as any).sessionGhosts
+      );
       this.resetEvidence();
     },
     clearSession() {
-      if (this.totalCaptured(this.sessionGhosts) !== 0) {
+      if ((this as any).totalCaptured((this as any).sessionGhosts) !== 0) {
         const confirm = prompt(
           "This action removes all ghosts from this session.\nAll ghosts found this session are saved in the all time row...\nType 'confirm' to clear this session"
         );
         if (confirm === "confirm") {
-          this.sessionGhosts = [];
-          this.fillGhostStatsData(this.sessionGhosts);
+          (this as any).sessionGhosts = [];
+          this.fillGhostStatsData((this as any).sessionGhosts);
         }
       } else {
         alert("You must have ghosts captured this session to clear it!");
@@ -285,9 +294,12 @@ export default defineComponent({
         "This action removes all captured ghosts in this session AND all time captured.\nAre you sure? This action cannot be undone!\nType 'release' and click ok to confirm!"
       );
       if (confirm === "release") {
-        this.localGhosts = [];
-        this.sessionGhosts = [];
-        this.fillGhostStatsData(this.localGhosts, this.sessionGhosts);
+        (this as any).localGhosts = [];
+        (this as any).sessionGhosts = [];
+        this.fillGhostStatsData(
+          (this as any).localGhosts,
+          (this as any).sessionGhosts
+        );
       }
     },
     getGhostById: getGhostById
