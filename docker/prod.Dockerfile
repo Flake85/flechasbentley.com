@@ -1,9 +1,9 @@
-FROM node:14.15.0 AS build
+FROM node:11.13.0-alpine AS build
 
-RUN apt-get -y update \
-    && apt-get autoremove -y \
-    && apt-get autoclean -y \
-    && apt-get clean -y \
+RUN apk -y update \
+    && apk autoremove -y \
+    && apk autoclean -y \
+    && apk clean -y \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY . /app
