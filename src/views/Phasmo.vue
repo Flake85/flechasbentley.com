@@ -166,29 +166,29 @@ export default defineComponent({
   },
   watch: {
     localGhosts: {
-      handler(newFound: any) {
+      handler(newFound: Ghost) {
         localStorage.setItem("ghosts", JSON.stringify(newFound));
       },
       deep: true
     },
     sessionGhosts: {
-      handler(newFound: any) {
+      handler(newFound: Ghost) {
         sessionStorage.setItem("ghosts", JSON.stringify(newFound));
       },
       deep: true
     }
   },
   computed: {
-    displayGhosts(): any {
-      const possible: any = (this as any).filterGhostsWithFound();
-      return (this as any).filterGhostWithNotFound(possible);
+    displayGhosts(): Ghost[] {
+      const possible: any = this.filterGhostsWithFound();
+      return this.filterGhostWithNotFound(possible);
     }
   },
   methods: {
     filterGhostWithNotFound(possible: Ghost[]) {
       return possible.filter((ghost: Ghost) => {
         let found = false;
-        (this as any).evidences.notFound.forEach((evidence: Evidence) => {
+        this.evidences.notFound.forEach((evidence: Evidence) => {
           if (ghost.evidence.includes(evidence)) {
             found = true;
           }
@@ -197,9 +197,9 @@ export default defineComponent({
       });
     },
     filterGhostsWithFound(): Ghost[] {
-      return (this as any).ghosts.filter((ghost: Ghost) => {
+      return this.ghosts.filter((ghost: Ghost) => {
         let found = true;
-        (this as any).evidences.found.forEach((evidence: Evidence) => {
+        this.evidences.found.forEach((evidence: Evidence) => {
           if (!ghost.evidence.includes(evidence)) {
             found = false;
           }
@@ -221,7 +221,7 @@ export default defineComponent({
     },
     fillGhostStatsData(...storedGhosts: Array<GhostStats[]>) {
       for (let x = 0; x < storedGhosts.length; x++) {
-        (this as any).ghosts.forEach((ghost: Ghost) => {
+        this.ghosts.forEach((ghost: Ghost) => {
           storedGhosts[x].push({ ghostId: ghost.id, timesFound: 0 });
         });
       }
@@ -238,25 +238,25 @@ export default defineComponent({
         this.evidences.found.push(evidence);
         return;
       }
-      if ((this as any).evidences.found.includes(evidence)) {
-        (this as any).evidences.found = (this as any).evidences.found.filter(
-          (ev: any) => ev !== evidence
+      if (this.evidences.found.includes(evidence)) {
+        this.evidences.found = this.evidences.found.filter(
+          (ev: Evidence) => ev !== evidence
         );
-        (this as any).evidences.notFound.push(evidence);
+        this.evidences.notFound.push(evidence);
         return;
       }
-      if ((this as any).evidences.notFound.includes(evidence)) {
-        (this as any).evidences.notFound = (this as any).evidences.notFound.filter(
-          (ev: any) => ev !== evidence
+      if (this.evidences.notFound.includes(evidence)) {
+        this.evidences.notFound = this.evidences.notFound.filter(
+          (ev: Evidence) => ev !== evidence
         );
       }
     },
 
     getEvidenceBtnClass(evidence: Evidence) {
-      if ((this as any).evidences.found.includes(evidence)) {
+      if (this.evidences.found.includes(evidence)) {
         return "btn-success";
       }
-      if ((this as any).evidences.notFound.includes(evidence)) {
+      if (this.evidences.notFound.includes(evidence)) {
         return "btn-danger";
       }
       return "btn-dark";
@@ -272,19 +272,19 @@ export default defineComponent({
     captureGhost(ghost: Ghost) {
       this.updateGhostStats(
         ghost,
-        (this as any).localGhosts,
-        (this as any).sessionGhosts
+        this.localGhosts,
+        this.sessionGhosts
       );
       this.resetEvidence();
     },
     clearSession() {
-      if ((this as any).totalCaptured((this as any).sessionGhosts) !== 0) {
+      if (this.totalCaptured(this.sessionGhosts) !== 0) {
         const confirm = prompt(
           "This action removes all ghosts from this session.\nAll ghosts found this session are saved in the all time row...\nType 'confirm' to clear this session"
         );
         if (confirm === "confirm") {
-          (this as any).sessionGhosts = [];
-          this.fillGhostStatsData((this as any).sessionGhosts);
+          this.sessionGhosts = [];
+          this.fillGhostStatsData(this.sessionGhosts);
         }
       } else {
         alert("You must have ghosts captured this session to clear it!");
@@ -295,11 +295,11 @@ export default defineComponent({
         "This action removes all captured ghosts in this session AND all time captured.\nAre you sure? This action cannot be undone!\nType 'release' and click ok to confirm!"
       );
       if (confirm === "release") {
-        (this as any).localGhosts = [];
-        (this as any).sessionGhosts = [];
+        this.localGhosts = [];
+        this.sessionGhosts = [];
         this.fillGhostStatsData(
-          (this as any).localGhosts,
-          (this as any).sessionGhosts
+          this.localGhosts,
+          this.sessionGhosts
         );
       }
     },
