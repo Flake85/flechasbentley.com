@@ -26,13 +26,13 @@
             About Me
           </h5>
           <h6 class="card-subtitle mb-2 text-muted ">Coming Soon!</h6>
-
           <p class="card-text">
             Welcome to flechasbentley.com! If you are reading this, then you are
             here too early. That only means you get to see things as I develop
             my first deployed website. While you're here, check out my
-            <router-link to="/resume">resumé</router-link>. Also, make sure to
-            check back for more updates!
+            <router-link to="/resume">resumé</router-link> or my 
+            <router-link to="/phasmophobia">phasmophobia tool</router-link>. 
+            Also, make sure to check back for more updates!
           </p>
         </div>
       </div>
@@ -100,7 +100,7 @@ export default defineComponent({
   beforeUnmount() {
     clearInterval(this.intervalHandle);
   }
-} as any);
+});
 </script>
 <style lang="scss" scoped>
 #banner {

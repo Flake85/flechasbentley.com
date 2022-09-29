@@ -91,7 +91,7 @@ export default defineComponent({
       skills
     };
   }
-} as any);
+});
 </script>
 <style lang="scss">
 #resume {

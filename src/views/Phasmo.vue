@@ -4,6 +4,7 @@
       <div class="card-body">
         <div class="card-title">
           <h5>Phasmophobia Calculator</h5>
+          <h6 class="text-danger">*** This tool is outdated and is now implemented in-game ***</h6>
           <template v-for="evidence in tools" :key="evidence.id">
             <button
               type="button"
@@ -104,7 +105,7 @@
                   <td>All Time:</td>
                   <td
                     v-for="ghost in localGhosts"
-                    :key="(ghost.ghostId as Ghost)"
+                    :key="(ghost.ghostId)"
                   >
                     {{ ghost.timesFound }}
                   </td>
@@ -226,15 +227,15 @@ export default defineComponent({
       }
     },
     resetEvidence() {
-      ((this as any).evidences.found = []),
-        ((this as any).evidences.notFound = []);
+      (this.evidences.found = []),
+        (this.evidences.notFound = []);
     },
     selected(evidence: Evidence) {
       if (
-        !(this as any).evidences.found.includes(evidence) &&
-        !(this as any).evidences.notFound.includes(evidence)
+        !this.evidences.found.includes(evidence) &&
+        !this.evidences.notFound.includes(evidence)
       ) {
-        (this as any).evidences.found.push(evidence);
+        this.evidences.found.push(evidence);
         return;
       }
       if ((this as any).evidences.found.includes(evidence)) {
@@ -304,7 +305,7 @@ export default defineComponent({
     },
     getGhostById: getGhostById
   }
-} as any);
+});
 </script>
 
 <style>

@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
+import Resume from "../views/Resume.vue"
+import Phasmo from "../views/Phasmo.vue"
+import Fallback from "../views/404.vue"
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -10,22 +13,22 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/resume",
     name: "Resume",
-    component: () => import("../views/Resume.vue")
+    component: Resume
   },
   {
     path: "/phasmophobia",
     name: "Phasmophobia",
-    component: () => import("../views/Phasmo.vue")
+    component: Phasmo
   },
   {
     path: "/:pathMatch(.*)*",
     name: "404",
-    component: () => import("../views/404.vue")
+    component: Fallback
   }
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes
 });
 
