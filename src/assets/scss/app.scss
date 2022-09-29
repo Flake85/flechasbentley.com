@@ -1,9 +1,9 @@
 //bootstrap
-@import '~bootstrap/dist/css/bootstrap.min.css';
-@import '~bootstrap-icons/font/bootstrap-icons.css';
+@import "~bootstrap/scss/bootstrap";
+@import '/node_modules/bootstrap-icons/font/bootstrap-icons.css';
 
 //animate.css
-@import '~animate.css/animate.compat.css';
+@import 'animate.css';
 
 //variables
 @import 'variables';

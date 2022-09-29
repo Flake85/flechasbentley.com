@@ -1,3 +1,9 @@
+<!-- <script setup lang="ts">
+// This starter template is using Vue 3 <script setup> SFCs
+// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+  
+</script> -->
+
 <template>
   <div id="nav">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -51,22 +57,13 @@
   <footer class="bg-dark text-center text-lg-start">
     <div class="text-center p-3">
       <p v-scrollanimation="'animate__fadeIn'" class="text-light">
-        Made by: Flechas Bentley ©{{ currentYear }}
+        Made by: Flechas Bentley ©{{ new Date().getFullYear() }}
       </p>
     </div>
   </footer>
 </template>
-<script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({
-  computed: {
-    currentYear() {
-      return new Date().getFullYear();
-    }
-  }
-} as any);
-</script>
-<style lang="scss">
+
+<style scoped>
 .slide-enter-active,
 .slide-leave-active {
   transition: opacity 1s, transform 1s;
@@ -86,7 +83,7 @@ export default defineComponent({
   text-align: center;
   justify-content: center;
 }
-// .router-link-active {
-//   //add border to active link
-// }
+/* .router-link-active {
+  add border to active link
+} */
 </style>
