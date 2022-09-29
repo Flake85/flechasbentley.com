@@ -1,15 +1,9 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import "./registerServiceWorker";
-import router from "./router";
-import store from "./store";
-import "@/assets/scss/app.scss";
-import "animate.css";
-import "bootstrap";
-import ScrollAnimations from "@/directives/scrollanimation";
+import { createApp } from 'vue'
+// import './style.css'
+import App from './App.vue'
+import router from './router'
+import './assets/scss/app.scss'
+import './directives/scrollanimation'
+import ScrollAnimation from './directives/scrollanimation'
 
-const app = createApp(App);
-app.directive("scrollanimation", ScrollAnimations);
-app.use(store).use(router);
-
-app.mount("#app");
+createApp(App).directive("scrollanimation", ScrollAnimation).use(router).mount('#app')
