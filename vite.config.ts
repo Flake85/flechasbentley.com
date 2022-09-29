@@ -8,10 +8,11 @@ export default defineConfig({
   resolve: {
     alias: {
       '~bootstrap': path.resolve(__dirname, 'node_modules/bootstrap'),
+      '~bootstrap-icons': path.resolve(__dirname, 'node_modules/bootstrap-icons'),
     }
   },
   server: {
     host: '0.0.0.0',
     port: 8080
-  }
+  },
 })
