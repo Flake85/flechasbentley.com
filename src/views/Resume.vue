@@ -1,3 +1,8 @@
+<script setup lang="ts">
+  import { jobs, certifications, skills } from "./../lib/resume";
+  defineExpose({ jobs, certifications, skills })
+</script>
+
 <template>
   <div id="resume" class="container">
     <div class="row">
@@ -78,7 +83,7 @@
     </div>
   </div>
 </template>
-<script lang="ts">
+<!-- <script lang="ts">
 import { defineComponent } from "vue";
 import { jobs, certifications, skills } from "./../lib/resume";
 
@@ -92,7 +97,7 @@ export default defineComponent({
     };
   }
 });
-</script>
+</script> -->
 <style lang="scss">
 #resume {
   min-height: calc(100vh - (66px + 72px));

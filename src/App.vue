@@ -1,9 +1,3 @@
-<!-- <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-  
-</script> -->
-
 <template>
   <div id="nav">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -83,7 +77,4 @@
   text-align: center;
   justify-content: center;
 }
-/* .router-link-active {
-  add border to active link
-} */
 </style>

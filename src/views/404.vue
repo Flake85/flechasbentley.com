@@ -1,3 +1,11 @@
+<script setup lang="ts">
+  import { ref } from 'vue'
+  import { useRouter } from 'vue-router';
+  const name = ref("404")
+  const router = useRouter()
+  function directToHome() { router.push("/") }
+  defineExpose({ name, directToHome })
+</script>
 <template>
   <div id="lost-main" class="container">
     <div class="card">
@@ -24,17 +32,6 @@
     </div>
   </div>
 </template>
-<script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({
-  name: "404",
-  methods: {
-    directToHome(): void {
-      this.$router.push("/");
-    }
-  }
-});
-</script>
 <style lang="scss" scoped>
 #lost-main {
   height: calc(100vh - (66px + 72px));

@@ -1,3 +1,56 @@
+<script setup lang="ts">
+  import { ref } from 'vue'
+  const title = ref({
+    title: "Developer",
+    class: "col text-center text-light interval-text dev-text"
+  })
+  const show = ref(true)
+  const intervalHandle = ref(0)
+
+  intervalHandle.value = window.setInterval(() => {
+      show.value = false;
+      setTimeout(() => {
+        const titleClass = "col text-center text-light interval-text";
+        const titles = [
+          {
+            title: "Designer",
+            class: titleClass + " logotxt"
+          },
+          {
+            title: "Developer",
+            class: titleClass + " dev-text"
+          },
+          {
+            title: "Handcrafted",
+            class: titleClass + " logotxt"
+          },
+          {
+            title: "Husband",
+            class: titleClass + " kaushantxt"
+          },
+          {
+            title: "Father",
+            class: titleClass + " kaushantxt"
+          },
+          {
+            title: "Gamer",
+            class: titleClass + " kaushantxt"
+          }
+        ];
+
+        const randomItem = titles[Math.floor(Math.random() * titles.length)];
+
+        randomItem.title !== title.value.title
+          ? (title.value = randomItem)
+          : (title.value = titles[Math.floor(Math.random() * titles.length)]);
+
+        show.value = true;
+      }, 1000); //timeout for css animation
+    }, 5000); //time for interval
+  
+  defineExpose({ title, show, intervalHandle })
+</script>
+
 <template>
   <div class="home">
     <div id="banner" class="container">
@@ -40,68 +93,6 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  name: "Home",
-  data() {
-    return {
-      title: {
-        title: "Developer",
-        class: "col text-center text-light interval-text dev-text"
-      },
-      show: true,
-      intervalHandle: 0
-    };
-  },
-  created() {
-    this.intervalHandle = window.setInterval(() => {
-      this.show = false;
-      setTimeout(() => {
-        const titleClass = "col text-center text-light interval-text";
-        const titles = [
-          {
-            title: "Designer",
-            class: titleClass + " logotxt"
-          },
-          {
-            title: "Developer",
-            class: titleClass + " dev-text"
-          },
-          {
-            title: "Handcrafted",
-            class: titleClass + " logotxt"
-          },
-          {
-            title: "Husband",
-            class: titleClass + " kaushantxt"
-          },
-          {
-            title: "Father",
-            class: titleClass + " kaushantxt"
-          },
-          {
-            title: "Gamer",
-            class: titleClass + " kaushantxt"
-          }
-        ];
-
-        const randomItem = titles[Math.floor(Math.random() * titles.length)];
-
-        randomItem.title !== this.title.title
-          ? (this.title = randomItem)
-          : (this.title = titles[Math.floor(Math.random() * titles.length)]);
-
-        this.show = true;
-      }, 1000); //timeout for css animation
-    }, 5000); //time for interval
-  },
-  beforeUnmount() {
-    clearInterval(this.intervalHandle);
-  }
-});
-</script>
 <style lang="scss" scoped>
 #banner {
   height: calc(100vh - 65.97px);
