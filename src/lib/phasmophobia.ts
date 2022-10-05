@@ -133,7 +133,7 @@ export const ghosts = [
     evidence: [
       evidence.FingerPrints,
       evidence.GhostWriting,
-      evidence.FingerPrints
+      evidence.FreezingTemps
     ],
     weakness: "Sanity can't be lowered by using Ouija Board.",
     strength: "Attacks frequently."
